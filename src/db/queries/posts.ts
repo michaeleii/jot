@@ -20,8 +20,8 @@ export const userFeedQuery = baseQuery
   .orderBy(desc(posts.createdAt))
   .prepare();
 
-export const singlePostQuery = baseQuery.where(
-  eq(posts.id, sql.placeholder("postId")),
-);
+export const singlePostQuery = baseQuery
+  .where(eq(posts.id, sql.placeholder("postId")))
+  .prepare();
 
 export type Post = Awaited<ReturnType<typeof homeFeedQuery.all>>[0];
