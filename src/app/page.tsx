@@ -13,7 +13,7 @@ function PostItem({ post }: PostItemProps) {
       </div>
       <div>
         <p className="mb-5 text-xs tracking-widest text-muted-foreground">
-          {post.createdAt}
+          {new Intl.DateTimeFormat().format(new Date(post.createdAt))}
         </p>
         <Link href={`/post/${post.id}`}>
           <article className="card transition-all hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)]">
