@@ -1,24 +1,32 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { PencilIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { CircleIcon, PencilIcon } from "lucide-react";
 
 function PostItem() {
   return (
-    <div>
-      <p className="mb-5 text-xs text-gray-500 tracking-widest">10.11.18</p>
-      <article className="p-10 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-        <h2 className="font-semibold mb-2">Lorem ipsum dolor sit amet.</h2>
-        <p className="text-sm text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          voluptatum?
+    <>
+      <div className="absolute -left-2.5">
+        <CircleIcon className="bg-white w-4 h-4 stroke-muted-foreground" />
+      </div>
+      <div>
+        <p className="mb-5 text-xs text-muted-foreground tracking-widest">
+          10.11.18
         </p>
-      </article>
-    </div>
+        <article className="p-10 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+          <h2 className={cn("font-semibold text-lg mb-2")}>Merry Christmas</h2>
+          <p className="text-sm text-muted-foreground">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            voluptatum?
+          </p>
+        </article>
+      </div>
+    </>
   );
 }
 
 function PostList() {
   return (
-    <div className="space-y-10 mb-10">
+    <div className="space-y-10 mb-10 border-l-2 pl-10 relative">
       {Array.from({ length: 5 }).map((_, i) => (
         <PostItem key={i} />
       ))}
@@ -29,9 +37,9 @@ function PostList() {
 export default function Home() {
   return (
     <MaxWidthWrapper>
-      <div className="border-b-2 pb-2 mb-5 flex justify-between items-baseline">
+      <div className="border-b-2 pb-5 mb-5 flex justify-between items-baseline">
         <PencilIcon className="w-6 h-6" />
-        <p className="text-lg font-semibold font-">Your feed</p>
+        <p className="text-lg font-semibold">Your feed</p>
       </div>
       <PostList />
     </MaxWidthWrapper>
