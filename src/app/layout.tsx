@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
-import Navbar from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/navbar";
+import { inter } from "@/fonts";
 
 export const metadata: Metadata = {
   title: "Jot",
