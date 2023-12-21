@@ -3,5 +3,5 @@ type MaxWidthWrapperProps = {
 };
 
 export default function MaxWidthWrapper({ children }: MaxWidthWrapperProps) {
-  return <main className="pt-5 px-5 max-w-xl mx-auto">{children}</main>;
+  return <main className="pt-5 px-5 max-w-4xl mx-auto">{children}</main>;
 }
