@@ -1,8 +1,11 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { CircleIcon, MessageSquare, PencilIcon } from "lucide-react";
+import { Post, homeFeedQuery } from "@/db/queries/posts";
+import { CircleIcon, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
-function PostItem() {
+type PostItemProps = { post: Post };
+
+function PostItem({ post }: PostItemProps) {
   return (
     <>
       <div className="absolute -left-2.5">
@@ -10,15 +13,12 @@ function PostItem() {
       </div>
       <div>
         <p className="mb-5 text-xs tracking-widest text-muted-foreground">
-          10.11.18
+          {post.createdAt}
         </p>
-        <Link href="/post/1">
+        <Link href={`/post/${post.id}`}>
           <article className="card transition-all hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)]">
-            <h2 className="mb-2 text-lg font-semibold">Merry Christmas</h2>
-            <p className="text-sm text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-              voluptatum?
-            </p>
+            <h2 className="mb-2 text-lg font-semibold">{post.title}</h2>
+            <p className="text-sm text-muted-foreground">{post.content}</p>
           </article>
         </Link>
       </div>
@@ -26,11 +26,12 @@ function PostItem() {
   );
 }
 
-function PostList() {
+async function PostList() {
+  const posts = await homeFeedQuery.all();
   return (
     <div className="relative mb-20 space-y-10 border-l-2 pl-10">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <PostItem key={i} />
+      {posts.map((post) => (
+        <PostItem post={post} key={post.id} />
       ))}
     </div>
   );
