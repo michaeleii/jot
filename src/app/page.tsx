@@ -1,6 +1,7 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { cn } from "@/lib/utils";
 import { CircleIcon, PencilIcon } from "lucide-react";
+import Link from "next/link";
 
 function PostItem() {
   return (
@@ -12,13 +13,15 @@ function PostItem() {
         <p className="mb-5 text-xs text-muted-foreground tracking-widest">
           10.11.18
         </p>
-        <article className="p-10 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-          <h2 className={cn("font-semibold text-lg mb-2")}>Merry Christmas</h2>
-          <p className="text-sm text-muted-foreground">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            voluptatum?
-          </p>
-        </article>
+        <Link href="/post/1">
+          <article className="p-10 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+            <h2 className="font-semibold text-lg mb-2">Merry Christmas</h2>
+            <p className="text-sm text-muted-foreground">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+              voluptatum?
+            </p>
+          </article>
+        </Link>
       </div>
     </>
   );
