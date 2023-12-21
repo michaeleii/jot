@@ -1,5 +1,4 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { cn } from "@/lib/utils";
 import { CircleIcon, PencilIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -14,7 +13,7 @@ function PostItem() {
           10.11.18
         </p>
         <Link href="/post/1">
-          <article className="border p-10 transition-all hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)]">
+          <article className="card transition-all hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)]">
             <h2 className="mb-2 text-lg font-semibold">Merry Christmas</h2>
             <p className="text-sm text-muted-foreground">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,

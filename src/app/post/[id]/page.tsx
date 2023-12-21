@@ -4,11 +4,11 @@ export default function SinglePostPage() {
   return (
     <MaxWidthWrapper>
       <article className="p-10">
-        <h2 className="font-semibold text-4xl mb-2">Merry Christmas</h2>
-        <span className="text-sm mb-5 text-muted-foreground">
-          By Michael Lei
+        <h1 className="main-heading">Merry Christmas</h1>
+        <span className="mb-5 text-sm text-muted-foreground">
+          By michaellei
         </span>
-        <p className="text-muted-foreground mt-10">
+        <p className="mt-10 text-muted-foreground">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           voluptatum?
         </p>
