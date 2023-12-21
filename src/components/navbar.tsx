@@ -1,16 +1,11 @@
 import Link from "next/link";
 import { User2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { playfairDisplay } from "@/fonts";
 
 export default function Navbar() {
   return (
     <header className="flex justify-between items-center p-5 max-w-7xl mx-auto">
-      <Link
-        href="/"
-        className={cn("text-4xl font-bold", playfairDisplay.className)}
-      >
+      <Link href="/" className="text-4xl font-bold">
         Jot
       </Link>
       <nav className="flex items-center">
