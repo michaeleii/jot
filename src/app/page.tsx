@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { CircleIcon, PencilIcon } from "lucide-react";
+import { CircleIcon, MessageSquare, PencilIcon } from "lucide-react";
 import Link from "next/link";
 
 function PostItem() {
@@ -40,8 +40,8 @@ export default function Home() {
   return (
     <MaxWidthWrapper>
       <div className="mb-5 flex items-baseline justify-between border-b-2 pb-5">
-        <PencilIcon className="h-6 w-6" />
-        <p className="text-lg font-semibold">Your feed</p>
+        <MessageSquare className="h-6 w-6" />
+        <p className="text-lg font-semibold">For you</p>
       </div>
       <PostList />
     </MaxWidthWrapper>
