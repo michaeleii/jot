@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "drizzle-kit push:sqlite",
+    "studio": "drizzle-kit studio",
+    "db:local": "turso dev --db-file dev.db"
   },
   "dependencies": {
     "@libsql/client": "^0.4.0-pre.5",
