@@ -7,15 +7,15 @@ function PostItem() {
   return (
     <>
       <div className="absolute -left-2.5">
-        <CircleIcon className="fill-background w-4 h-4 stroke-muted-foreground" />
+        <CircleIcon className="h-4 w-4 fill-background stroke-muted-foreground" />
       </div>
       <div>
-        <p className="mb-5 text-xs text-muted-foreground tracking-widest">
+        <p className="mb-5 text-xs tracking-widest text-muted-foreground">
           10.11.18
         </p>
         <Link href="/post/1">
-          <article className="p-10  hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] border dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)] transition-all">
-            <h2 className="font-semibold text-lg mb-2">Merry Christmas</h2>
+          <article className="border p-10 transition-all hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_3px_10px_rgb(255,255,255,0.2)]">
+            <h2 className="mb-2 text-lg font-semibold">Merry Christmas</h2>
             <p className="text-sm text-muted-foreground">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               voluptatum?
@@ -29,7 +29,7 @@ function PostItem() {
 
 function PostList() {
   return (
-    <div className="space-y-10 mb-10 border-l-2 pl-10 relative">
+    <div className="relative mb-10 space-y-10 border-l-2 pl-10">
       {Array.from({ length: 5 }).map((_, i) => (
         <PostItem key={i} />
       ))}
@@ -40,8 +40,8 @@ function PostList() {
 export default function Home() {
   return (
     <MaxWidthWrapper>
-      <div className="border-b-2 pb-5 mb-5 flex justify-between items-baseline">
-        <PencilIcon className="w-6 h-6" />
+      <div className="mb-5 flex items-baseline justify-between border-b-2 pb-5">
+        <PencilIcon className="h-6 w-6" />
         <p className="text-lg font-semibold">Your feed</p>
       </div>
       <PostList />
