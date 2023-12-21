@@ -28,7 +28,7 @@ function PostItem() {
 
 function PostList() {
   return (
-    <div className="relative mb-10 space-y-10 border-l-2 pl-10">
+    <div className="relative mb-20 space-y-10 border-l-2 pl-10">
       {Array.from({ length: 5 }).map((_, i) => (
         <PostItem key={i} />
       ))}
