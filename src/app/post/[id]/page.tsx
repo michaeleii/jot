@@ -1,5 +1,6 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { singlePostQuery } from "@/db/queries/posts";
+import DeletePostDialog from "./delete-post-dialog";
 
 type SinglePostItemProps = {
   postId: number;
@@ -9,7 +10,10 @@ async function SinglePostItem({ postId }: SinglePostItemProps) {
   const post = await singlePostQuery.all({ postId }).then((posts) => posts[0]);
   return (
     <article className="p-10">
-      <h1 className="main-heading">{post.title}</h1>
+      <div className="flex justify-between">
+        <h1 className="main-heading">{post.title}</h1>
+        <DeletePostDialog />
+      </div>
       <span className="mb-5 text-sm text-muted-foreground">
         By {post.user.username}
       </span>
