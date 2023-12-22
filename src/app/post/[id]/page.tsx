@@ -9,11 +9,11 @@ type SinglePostItemProps = {
 async function SinglePostItem({ postId }: SinglePostItemProps) {
   const post = await singlePostQuery.all({ postId }).then((posts) => posts[0]);
   return (
-    <article className="p-10">
-      <div className="flex justify-between">
-        <h1 className="main-heading">{post.title}</h1>
-        <DeletePostDialog />
+    <article className="px-5">
+      <div className="flex justify-end">
+        <DeletePostDialog postId={postId} />
       </div>
+      <h1 className="main-heading mt-10">{post.title}</h1>
       <span className="mb-5 text-sm text-muted-foreground">
         By {post.user.username}
       </span>

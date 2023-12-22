@@ -10,8 +10,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { deletePost } from "./actions";
 
-export default function DeletePostDialog() {
+export default function DeletePostDialog({ postId }: { postId: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -27,7 +28,8 @@ export default function DeletePostDialog() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <form>
+          <form action={deletePost}>
+            <input type="hidden" name="postId" defaultValue={postId} />
             <FormSubmitButton
               variant="destructive"
               value="Delete"
