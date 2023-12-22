@@ -17,4 +17,16 @@ export const posts = sqliteTable("posts", {
 
 // Schema for inserting a post
 
-export const insertPostSchema = createInsertSchema(posts);
+export const insertPostSchema = createInsertSchema(posts, {
+  title: (schema) =>
+    schema.title
+      .min(1, "You must enter a title.")
+      .max(100, "Your title must be less than 100 characters."),
+  content: (schema) =>
+    schema.content
+      .min(1, "You must enter some content.")
+      .max(200, "Your post must be less than 200 characters."),
+}).pick({
+  title: true,
+  content: true,
+});
