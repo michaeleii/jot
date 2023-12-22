@@ -29,6 +29,7 @@ export default function FormSubmitButton({
       type="submit"
       className="w-full"
       disabled={pending}
+      aria-disabled={pending}
     >
       {pending ? (
         <div className="flex items-center gap-2">
