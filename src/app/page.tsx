@@ -1,6 +1,15 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { Button } from "@/components/ui/button";
 import { Post, homeFeedQuery } from "@/db/queries/posts";
-import { CircleIcon, MessageSquare } from "lucide-react";
+import {
+  CircleIcon,
+  MessageSquare,
+  PencilIcon,
+  PencilLineIcon,
+  PlusIcon,
+  PlusSquare,
+  PlusSquareIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 type PostItemProps = { post: Post };
@@ -41,8 +50,11 @@ export default function Home() {
   return (
     <MaxWidthWrapper>
       <div className="mb-5 flex items-baseline justify-between border-b-2 pb-5">
-        <MessageSquare className="h-6 w-6" />
-        <p className="text-lg font-semibold">For you</p>
+        <Link href="/create" className="w-full">
+          <Button size="lg" className="w-full">
+            Create Post
+          </Button>
+        </Link>
       </div>
       <PostList />
     </MaxWidthWrapper>
