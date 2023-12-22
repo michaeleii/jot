@@ -8,7 +8,11 @@ async function Profile() {
   return (
     <article className="card">
       <h1 className="main-heading">{user.username}</h1>
-      <p className="mt-10 text-muted-foreground">Enter your bio here.</p>
+      <p className="mt-10 text-muted-foreground">
+        {user.bio.length > 0
+          ? user.bio
+          : `${user.username} does not have a bio.`}
+      </p>
     </article>
   );
 }
