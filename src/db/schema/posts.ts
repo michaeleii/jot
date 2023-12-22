@@ -8,8 +8,8 @@ export const posts = sqliteTable("posts", {
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
-  title: text("title"),
-  content: text("text"),
+  title: text("title").notNull(),
+  content: text("text").notNull(),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
