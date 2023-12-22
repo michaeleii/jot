@@ -17,15 +17,16 @@ export default function CreatePostForm() {
         <h1 className="text-lg font-bold">Create Post</h1>
       </div>
       <div>
-        <Input placeholder="Title" />
-        <FormErrors errors={state.errors?.title} />
+        <Input placeholder="Title" aria-describedby="title-error" />
+        <FormErrors id="title-error" errors={state.errors?.title} />
       </div>
       <div>
         <Textarea
           className="min-h-[200px]"
           placeholder="Write down your thoughts..."
+          aria-describedby="content-error"
         />
-        <FormErrors errors={state.errors?.content} />
+        <FormErrors id="content-error" errors={state.errors?.content} />
       </div>
       <div className="w-full">
         <FormSubmitButton value="Create Post" loadingValue="Creating..." />
