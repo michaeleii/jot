@@ -1,6 +1,7 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 import { users } from "./users";
+import { createInsertSchema } from "drizzle-zod";
 
 export const posts = sqliteTable("posts", {
   id: integer("id").notNull().primaryKey(),
@@ -13,3 +14,7 @@ export const posts = sqliteTable("posts", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
+
+// Schema for inserting a post
+
+export const insertPostSchema = createInsertSchema(posts);
