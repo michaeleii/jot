@@ -25,6 +25,7 @@ export default function CreatePostForm() {
       </div>
       <div>
         <Input
+          className={cn({ "border-destructive": state.errors?.title })}
           name="title"
           placeholder="Title"
           aria-describedby="title-error"
@@ -32,20 +33,27 @@ export default function CreatePostForm() {
         <FormErrors id="title-error" errors={state.errors?.title} />
       </div>
       <div>
-        <Textarea
-          name="content"
-          onInput={(e) => setCharacters(e.currentTarget.value.length)}
-          className="min-h-[200px]"
-          placeholder="Write down your thoughts..."
-          aria-describedby="content-error"
-        />
-        <p
-          className={cn("mt-3 text-right text-sm text-muted-foreground", {
-            "font-bold text-destructive": characters > characterLimit,
-          })}
-        >
-          {characters} / {characterLimit} characters
-        </p>
+        <div className="relative">
+          <Textarea
+            className={cn("min-h-[200px]", {
+              "border-destructive": state.errors?.content,
+            })}
+            name="content"
+            onInput={(e) => setCharacters(e.currentTarget.value.length)}
+            placeholder="Write down your thoughts..."
+            aria-describedby="content-error"
+          />
+          <p
+            className={cn(
+              "absolute bottom-2 right-2 mt-3 text-sm text-muted-foreground",
+              {
+                "font-bold text-destructive": characters > characterLimit,
+              },
+            )}
+          >
+            {characters} / {characterLimit}
+          </p>
+        </div>
         <FormErrors id="content-error" errors={state.errors?.content} />
       </div>
       <div className="w-full">
