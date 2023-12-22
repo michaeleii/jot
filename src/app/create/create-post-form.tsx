@@ -1,31 +1,51 @@
 "use client";
 
+import { useState } from "react";
+import { useFormState } from "react-dom";
+
+import { State, createPost } from "./actions";
+
 import FormSubmitButton from "@/components/form-submit-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useFormState } from "react-dom";
-import { State, createPost } from "./actions";
 import FormErrors from "@/components/form-errors";
+import { cn } from "@/lib/utils";
 
 const initialState: State = { message: null, errors: {} };
+const characterLimit = 200;
 
 export default function CreatePostForm() {
   const [state, formAction] = useFormState(createPost, initialState);
+  const [characters, setCharacters] = useState(0);
+
   return (
     <form action={formAction} className="space-y-3">
       <div className="mb-3 flex items-center gap-2">
         <h1 className="text-lg font-bold">Create Post</h1>
       </div>
       <div>
-        <Input placeholder="Title" aria-describedby="title-error" />
+        <Input
+          name="title"
+          placeholder="Title"
+          aria-describedby="title-error"
+        />
         <FormErrors id="title-error" errors={state.errors?.title} />
       </div>
       <div>
         <Textarea
+          name="content"
+          onInput={(e) => setCharacters(e.currentTarget.value.length)}
           className="min-h-[200px]"
           placeholder="Write down your thoughts..."
           aria-describedby="content-error"
         />
+        <p
+          className={cn("mt-3 text-right text-sm text-muted-foreground", {
+            "font-bold text-destructive": characters > characterLimit,
+          })}
+        >
+          {characters} / {characterLimit} characters
+        </p>
         <FormErrors id="content-error" errors={state.errors?.content} />
       </div>
       <div className="w-full">
