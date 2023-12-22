@@ -3,9 +3,20 @@ import { posts } from "@/db/schema/posts";
 import { users } from "@/db/schema/users";
 
 const fakeUsers = [
-  { id: 1, username: "john_doe" },
-  { id: 2, username: "alice_smith" },
-  { id: 3, username: "michael_lei" },
+  {
+    id: 1,
+    username: "john_doe",
+  },
+  {
+    id: 2,
+    username: "alice_smith",
+    avatar: "https://www.gravatar.com/avatar/?d=retro",
+  },
+  {
+    id: 3,
+    username: "michael_lei",
+    avatar: "https://www.gravatar.com/avatar/?d=identicon",
+  },
 ];
 
 const fakePosts = [
