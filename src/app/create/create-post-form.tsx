@@ -1,10 +1,13 @@
+"use client";
+
 import FormSubmitButton from "@/components/form-submit-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormState } from "react-dom";
-import { createPost } from "./actions";
+import { State, createPost } from "./actions";
+import FormErrors from "@/components/form-errors";
 
-const initialState = { message: "", errors: {} };
+const initialState: State = { message: null, errors: {} };
 
 export default function CreatePostForm() {
   const [state, formAction] = useFormState(createPost, initialState);
@@ -13,11 +16,17 @@ export default function CreatePostForm() {
       <div className="mb-3 flex items-center gap-2">
         <h1 className="text-lg font-bold">Create Post</h1>
       </div>
-      <Input placeholder="Title" />
-      <Textarea
-        className="min-h-[200px]"
-        placeholder="Write down your thoughts..."
-      />
+      <div>
+        <Input placeholder="Title" />
+        <FormErrors errors={state.errors?.title} />
+      </div>
+      <div>
+        <Textarea
+          className="min-h-[200px]"
+          placeholder="Write down your thoughts..."
+        />
+        <FormErrors errors={state.errors?.content} />
+      </div>
       <div className="w-full">
         <FormSubmitButton value="Create Post" loadingValue="Creating..." />
       </div>

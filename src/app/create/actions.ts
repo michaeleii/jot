@@ -7,12 +7,12 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 // This is temporary until @types/react-dom is updated
-type State = {
+export type State = {
   errors?: {
-    title?: string[] | undefined;
-    content?: string[] | undefined;
+    title?: string[];
+    content?: string[];
   };
-  message?: string;
+  message?: string | null;
 };
 
 export async function createPost(_: State, formData: FormData) {
