@@ -3,7 +3,7 @@ import DeletePostDialog from "./delete-post-dialog";
 
 import { singlePostQuery } from "@/db/queries/posts";
 import { cookies } from "next/headers";
-import { HeartIcon, Share2Icon, ShareIcon } from "lucide-react";
+import { HeartIcon, Share2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type SinglePostItemProps = {
@@ -41,7 +41,7 @@ type SinglePostPageProps = {
 export default function SinglePostPage({ params }: SinglePostPageProps) {
   const postId = +params.id;
   return (
-    <MaxWidthWrapper>
+    <MaxWidthWrapper className="mt-10">
       <SinglePostItem postId={postId} />
     </MaxWidthWrapper>
   );
