@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { userProfileQuery } from "@/db/queries/users";
 import { insertPostSchema, posts } from "@/db/schema/posts";
+import { getCurrentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -30,13 +31,7 @@ export async function createPost(_: State, formData: FormData) {
   }
 
   const post = validatedFields.data;
-  const user = await userProfileQuery
-    .all({ userId: 1 })
-    .then((users) => users[0]);
-
-  if (!user) {
-    redirect("/login");
-  }
+  const user = await getCurrentUser();
 
   try {
     await db.insert(posts).values({ ...post, userId: user.id });
