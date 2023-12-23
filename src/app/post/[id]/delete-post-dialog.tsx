@@ -11,12 +11,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { deletePost } from "./actions";
+import { Trash2Icon } from "lucide-react";
 
 export default function DeletePostDialog({ postId }: { postId: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete Post</Button>
+        <Button variant="ghost" size="icon">
+          <Trash2Icon className="h-6 w-6" />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
