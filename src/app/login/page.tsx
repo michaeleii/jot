@@ -3,7 +3,7 @@ import LoginForm from "./login-form";
 
 export default function LoginPage() {
   return (
-    <MaxWidthWrapper className="max-w-lg">
+    <MaxWidthWrapper className="mt-20 max-w-lg">
       <LoginForm />
     </MaxWidthWrapper>
   );

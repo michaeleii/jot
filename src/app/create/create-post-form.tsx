@@ -21,7 +21,7 @@ export default function CreatePostForm() {
   return (
     <form action={formAction} className="space-y-3">
       <div className="mb-3 flex items-center gap-2">
-        <h1 className="text-lg font-bold">Create Post</h1>
+        <h1 className="main-heading">Create</h1>
       </div>
       <div>
         <Input

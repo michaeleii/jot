@@ -40,24 +40,8 @@ async function PostList() {
 }
 
 export default async function Home() {
-  const isLoggedin = await getLoginStatus();
   return (
     <MaxWidthWrapper>
-      <div className="mb-5 flex items-baseline justify-between border-b-2 pb-5">
-        {isLoggedin ? (
-          <Link href="/create" className="w-full">
-            <Button size="lg" className="w-full">
-              Create Post
-            </Button>
-          </Link>
-        ) : (
-          <Link href="/login" className="w-full">
-            <Button size="lg" className="w-full">
-              Login
-            </Button>
-          </Link>
-        )}
-      </div>
       <PostList />
     </MaxWidthWrapper>
   );

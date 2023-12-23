@@ -9,7 +9,7 @@ export default async function CreatePage() {
     redirect("/login");
   }
   return (
-    <MaxWidthWrapper className="max-w-lg">
+    <MaxWidthWrapper className="mt-20 max-w-lg">
       <CreatePostForm />
     </MaxWidthWrapper>
   );

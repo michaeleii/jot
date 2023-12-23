@@ -1,26 +1,15 @@
 import Link from "next/link";
-import { User2Icon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "./mode-toggle";
 import { getLoginStatus } from "@/lib/auth";
+import NavMenu from "./nav-menu";
 
 export default async function Navbar() {
   const isLoggedin = await getLoginStatus();
   return (
-    <header className="mx-auto flex max-w-7xl items-center justify-between p-5">
+    <header className="mx-auto flex items-center justify-between gap-2 border-b-2 p-5">
       <Link href="/" className="text-4xl font-bold">
         Jot
       </Link>
-      <nav className="flex items-center">
-        <ModeToggle />
-        {isLoggedin && (
-          <Link href="/profile">
-            <Button variant="ghost" size="icon">
-              <User2Icon className="h-6 w-6" />
-            </Button>
-          </Link>
-        )}
-      </nav>
+      <NavMenu isLoggedin={isLoggedin} />
     </header>
   );
 }

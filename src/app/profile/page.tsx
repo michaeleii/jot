@@ -7,7 +7,11 @@ import { logout } from "./actions";
 async function SignOutForm() {
   return (
     <form action={logout} className="mt-3 w-full">
-      <FormSubmitButton value="Sign Out" loadingValue="Signing Out..." />
+      <FormSubmitButton
+        variant="secondary"
+        value="Sign Out"
+        loadingValue="Signing Out..."
+      />
     </form>
   );
 }
