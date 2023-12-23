@@ -1,6 +1,16 @@
+import FormSubmitButton from "@/components/form-submit-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { getCurrentUser } from "@/lib/auth";
 import Image from "next/image";
+import { logout } from "./actions";
+
+async function SignOutForm() {
+  return (
+    <form action={logout} className="mt-3 w-full">
+      <FormSubmitButton value="Sign Out" loadingValue="Signing Out..." />
+    </form>
+  );
+}
 
 async function Profile() {
   const user = await getCurrentUser();
@@ -30,6 +40,7 @@ export default function ProfilePage() {
   return (
     <MaxWidthWrapper>
       <Profile />
+      <SignOutForm />
     </MaxWidthWrapper>
   );
 }
