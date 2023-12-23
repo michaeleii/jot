@@ -5,7 +5,7 @@ import { createInsertSchema } from "drizzle-zod";
 
 export const posts = sqliteTable("posts", {
   id: integer("id").notNull().primaryKey(),
-  userId: integer("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => users.id),
   title: text("title").notNull(),

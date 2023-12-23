@@ -23,7 +23,7 @@ export async function login(_: State, formData: FormData) {
       return { message: "User not found." };
     }
 
-    cookies().set("user_id", user.id.toString());
+    cookies().set("user_id", user.id);
   } catch (error) {
     return { message: "Database Error: Failed to login." };
   }
