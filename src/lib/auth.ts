@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { userProfileQuery } from "@/db/queries/users";
 
 export const getLoginStatus = async () => {
-  const userId = cookies().get("user_id");
+  const userId = cookies().get("user_id")?.value;
   if (!userId) {
     return false;
   }
@@ -15,7 +15,7 @@ export const getLoginStatus = async () => {
 };
 
 export const getCurrentUser = async () => {
-  const userId = cookies().get("user_id");
+  const userId = cookies().get("user_id")?.value;
   if (!userId) {
     redirect("/login");
   }
