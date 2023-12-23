@@ -1,11 +1,9 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { userProfileQuery } from "@/db/queries/users";
+import { getCurrentUser } from "@/lib/auth";
 import Image from "next/image";
 
 async function Profile() {
-  const user = await userProfileQuery
-    .all({ userId: 1 })
-    .then((users) => users[0]);
+  const user = await getCurrentUser();
   return (
     <article className="card flex flex-wrap justify-between">
       <div>
