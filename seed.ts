@@ -5,11 +5,11 @@ import { users } from "@/db/schema/users";
 const fakeUsers = [
   {
     id: "1",
-    username: "john_doe",
+    username: "elsa_qiu",
   },
   {
     id: "2",
-    username: "alice_smith",
+    username: "scott_chen",
     avatar: "https://www.gravatar.com/avatar/?d=retro",
   },
   {
