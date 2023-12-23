@@ -31,7 +31,7 @@ function PostItem({ post }: PostItemProps) {
 async function PostList() {
   const posts = await homeFeedQuery.all();
   return (
-    <div className="relative mb-20 space-y-10 border-l-2 pl-10">
+    <div className="relative mb-20 ml-5 space-y-10 border-l-2 pl-10">
       {posts.map((post) => (
         <PostItem post={post} key={post.id} />
       ))}
