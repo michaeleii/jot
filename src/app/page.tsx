@@ -1,15 +1,8 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import { Post, homeFeedQuery } from "@/db/queries/posts";
-import {
-  CircleIcon,
-  MessageSquare,
-  PencilIcon,
-  PencilLineIcon,
-  PlusIcon,
-  PlusSquare,
-  PlusSquareIcon,
-} from "lucide-react";
+import { getLoginStatus } from "@/lib/auth";
+import { CircleIcon } from "lucide-react";
 import Link from "next/link";
 
 type PostItemProps = { post: Post };
@@ -46,15 +39,24 @@ async function PostList() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const isLoggedin = await getLoginStatus();
   return (
     <MaxWidthWrapper>
       <div className="mb-5 flex items-baseline justify-between border-b-2 pb-5">
-        <Link href="/create" className="w-full">
-          <Button size="lg" className="w-full">
-            Create Post
-          </Button>
-        </Link>
+        {isLoggedin ? (
+          <Link href="/create" className="w-full">
+            <Button size="lg" className="w-full">
+              Create Post
+            </Button>
+          </Link>
+        ) : (
+          <Link href="/login" className="w-full">
+            <Button size="lg" className="w-full">
+              Login
+            </Button>
+          </Link>
+        )}
       </div>
       <PostList />
     </MaxWidthWrapper>

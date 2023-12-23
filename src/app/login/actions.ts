@@ -1,3 +1,5 @@
+"use server";
+
 import { db, eq } from "@/db";
 import { users } from "@/db/schema/users";
 import { revalidatePath } from "next/cache";
