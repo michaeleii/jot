@@ -21,17 +21,12 @@ async function Profile() {
   return (
     <article className="card flex flex-wrap justify-between">
       <div>
-        <h1 className="main-heading">{user.username}</h1>
-        <p className="mt-10 text-muted-foreground">
-          {user.bio.length > 0
-            ? user.bio
-            : `${user.username} does not have a bio.`}
-        </p>
+        <h1 className="main-heading">{user.name}</h1>
       </div>
       <Image
         className="rounded-full"
-        src={user.avatar}
-        alt={user.username}
+        src={user.image || "https://www.gravatar.com/avatar/?d=mp"}
+        alt={user.name || ""}
         width={100}
         height={100}
         quality={100}

@@ -1,7 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { Button } from "@/components/ui/button";
 import { Post, homeFeedQuery } from "@/db/queries/posts";
-import { getLoginStatus } from "@/lib/auth";
 import { CircleIcon } from "lucide-react";
 import Link from "next/link";
 

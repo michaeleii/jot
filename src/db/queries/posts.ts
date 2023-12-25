@@ -7,7 +7,7 @@ const baseQuery = db
     id: posts.id,
     title: posts.title,
     content: posts.content,
-    user: { id: users.id, username: users.username },
+    user: { id: users.id, name: users.name, image: users.image },
     createdAt: posts.createdAt,
   })
   .from(posts)

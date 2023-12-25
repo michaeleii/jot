@@ -18,7 +18,7 @@ async function SinglePostItem({ postId }: SinglePostItemProps) {
     <article className="px-5">
       <h1 className="main-heading mt-5">{post.title}</h1>
       <span className="mb-5 text-sm text-muted-foreground">
-        By {post.user.username}
+        By {post.user.name}
       </span>
       <p className="mt-10 text-muted-foreground">{post.content}</p>
       <div className="mt-10 flex items-center justify-end gap-2">
