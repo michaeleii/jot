@@ -2,7 +2,6 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import DeletePostDialog from "./delete-post-dialog";
 
 import { singlePostQuery } from "@/db/queries/posts";
-import { cookies } from "next/headers";
 import { HeartIcon, Share2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/auth";
