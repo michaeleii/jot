@@ -23,6 +23,9 @@ export default function CreatePostForm() {
       <div className="mb-3 flex items-center gap-2">
         <h1 className="main-heading">Create</h1>
       </div>
+      {state.message && (
+        <FormErrors id="create-error" errors={[state.message]} />
+      )}
       <div>
         <Input
           className={cn({ "border-destructive": state.errors?.title })}

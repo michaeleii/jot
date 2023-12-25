@@ -1,7 +1,6 @@
 "use server";
 
 import { db } from "@/db";
-import { userProfileQuery } from "@/db/queries/users";
 import { insertPostSchema, posts } from "@/db/schema/posts";
 import { getCurrentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
@@ -31,11 +30,12 @@ export async function createPost(_: State, formData: FormData) {
   }
 
   const post = validatedFields.data;
-  const user = await getCurrentUser();
+  const user = await getCurrentUser("/create");
 
   try {
     await db.insert(posts).values({ ...post, userId: user.id });
   } catch (error) {
+    if (error instanceof Error) console.error(error.message);
     return {
       message: "Database Error: Failed to create post.",
     };

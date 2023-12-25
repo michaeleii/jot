@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 export default async function CreatePage() {
   const isLoggedin = await getLoginStatus();
   if (!isLoggedin) {
-    redirect("/login");
+    redirect("/api/auth/signin?callbackUrl=/create");
   }
   return (
     <MaxWidthWrapper className="mt-20 max-w-lg">

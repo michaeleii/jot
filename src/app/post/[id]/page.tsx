@@ -5,6 +5,7 @@ import { singlePostQuery } from "@/db/queries/posts";
 import { cookies } from "next/headers";
 import { HeartIcon, Share2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getCurrentUser } from "@/lib/auth";
 
 type SinglePostItemProps = {
   postId: number;
@@ -12,8 +13,8 @@ type SinglePostItemProps = {
 
 async function SinglePostItem({ postId }: SinglePostItemProps) {
   const post = await singlePostQuery.all({ postId }).then((posts) => posts[0]);
-  const userId = cookies().get("user_id")?.value;
-  const isOwner = userId === post.user.id;
+  const user = await getCurrentUser();
+  const isOwner = post.user.id === user.id;
   return (
     <article className="px-5">
       <h1 className="main-heading mt-5">{post.title}</h1>
