@@ -2,7 +2,15 @@ import FormSubmitButton from "@/components/form-submit-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { getCurrentUser } from "@/lib/auth";
 import Image from "next/image";
-import { logout } from "./actions";
+import { signOut } from "next-auth/react";
+
+async function logout() {
+  "use server";
+  await signOut({
+    callbackUrl: "/",
+    redirect: true,
+  });
+}
 
 async function SignOutForm() {
   return (
@@ -25,7 +33,7 @@ async function Profile() {
       </div>
       <Image
         className="rounded-full"
-        src={user.image || "https://www.gravatar.com/avatar/?d=mp"}
+        src={user.image || "ttps://www.gravatar.com/avatar/?d=mp"}
         alt={user.name || ""}
         width={100}
         height={100}

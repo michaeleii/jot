@@ -16,8 +16,8 @@ export default function NavMenu({ isLoggedin }: { isLoggedin: boolean }) {
               <Button size="lg">Create Post</Button>
             </Link>
           )
-        : pathname !== "/login" && (
-            <Link href="/login">
+        : pathname !== "/api/auth/signin" && (
+            <Link href="/api/auth/signin">
               <Button size="lg">Login</Button>
             </Link>
           )}

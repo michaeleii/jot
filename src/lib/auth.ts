@@ -1,27 +1,17 @@
-import { cookies } from "next/headers";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { userProfileQuery } from "@/db/queries/users";
 
 export const getLoginStatus = async () => {
-  const userId = cookies().get("user_id")?.value;
-  if (!userId) {
-    return false;
-  }
-  const user = await userProfileQuery.all({ userId }).then((users) => users[0]);
-  if (!user) {
-    return false;
-  }
-  return true;
+  const session = await auth();
+  return session ? true : false;
 };
 
-export const getCurrentUser = async () => {
-  const userId = cookies().get("user_id")?.value;
-  if (!userId) {
-    redirect("/login");
+export const getCurrentUser = async (callbackUrl?: string) => {
+  const session = await auth();
+  if (!session?.user) {
+    return redirect(
+      `/api/auth/signin${callbackUrl || `?callbackUrl=${callbackUrl}`}`,
+    );
   }
-  const user = await userProfileQuery.all({ userId }).then((users) => users[0]);
-  if (!user) {
-    redirect("/login");
-  }
-  return user;
+  return session.user;
 };
