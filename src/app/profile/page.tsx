@@ -1,14 +1,13 @@
+import { signOut } from "@/auth";
 import FormSubmitButton from "@/components/form-submit-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { getCurrentUser } from "@/lib/auth";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
 
 async function logout() {
   "use server";
   await signOut({
-    callbackUrl: "/",
-    redirect: true,
+    redirectTo: "/",
   });
 }
 
