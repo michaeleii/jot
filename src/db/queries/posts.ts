@@ -1,4 +1,5 @@
 import { db, desc, eq, sql } from "..";
+import { media } from "../schema/media";
 import { posts } from "../schema/posts";
 import { users } from "../schema/users";
 
@@ -8,10 +9,12 @@ const baseQuery = db
     title: posts.title,
     content: posts.content,
     user: { id: users.id, name: users.name, image: users.image },
+    media: { id: media.id, type: media.type, url: media.url },
     createdAt: posts.createdAt,
   })
   .from(posts)
-  .innerJoin(users, eq(users.id, posts.userId));
+  .innerJoin(users, eq(users.id, posts.userId))
+  .leftJoin(media, eq(media.id, posts.mediaId));
 
 export const homeFeedQuery = baseQuery.orderBy(desc(posts.createdAt)).prepare();
 

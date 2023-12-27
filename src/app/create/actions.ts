@@ -10,18 +10,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { s3 } from "@/s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
 import { acceptedFileTypes } from "./acceptedFileTypes";
 import { generateRandomString } from "@/lib/utils";
-
-const s3 = new S3Client({
-  region: process.env.AWS_BUCKET_REGION!,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-});
 
 const maxFileSize = 1024 * 1024 * 10; // 10 MB
 
@@ -56,19 +50,17 @@ export async function getSignedURL(
     expiresIn: 60,
   });
 
-  const mediaUrl = signedUrl.split("?")[0];
-
   const { id } = await db
     .insert(media)
     .values({
       userId: session.user.id,
       type: type.startsWith("image") ? "image" : "video",
-      url: mediaUrl,
+      url: signedUrl.split("?")[0],
     })
     .returning({ id: media.id })
     .then((res) => res[0]);
 
-  return { url: mediaUrl, mediaId: id };
+  return { url: signedUrl, mediaId: id };
 }
 
 // This is temporary until @types/react-dom is updated

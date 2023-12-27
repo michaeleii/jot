@@ -1,15 +1,45 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import DeletePostDialog from "./delete-post-dialog";
 
-import { singlePostQuery } from "@/db/queries/posts";
+import { Post, singlePostQuery } from "@/db/queries/posts";
 import { HeartIcon, Share2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/auth";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type SinglePostItemProps = {
   postId: number;
 };
 
+type PostMediaProps = {
+  content: Post["content"];
+  media: Post["media"];
+};
+
+function PostMedia({ content, media }: PostMediaProps) {
+  if (!media) {
+    return null;
+  }
+  return (
+    <Link href={media.url} target="_blank" className="">
+      {media.type === "image" ? (
+        <div className="w-fill relative mx-auto aspect-video overflow-hidden rounded-xl border">
+          <Image
+            src={media.url}
+            alt={content}
+            fill
+            className="object-contain"
+          />
+        </div>
+      ) : media.type === "video" ? (
+        <video className="w-full object-contain" src={media.url} controls />
+      ) : null}
+    </Link>
+  );
+}
 async function SinglePostItem({ postId }: SinglePostItemProps) {
   const post = await singlePostQuery.all({ postId }).then((posts) => posts[0]);
   const user = await getCurrentUser();
@@ -20,8 +50,11 @@ async function SinglePostItem({ postId }: SinglePostItemProps) {
       <span className="mb-5 text-sm text-muted-foreground">
         By {post.user.name}
       </span>
-      <p className="mt-10 text-muted-foreground">{post.content}</p>
-      <div className="mt-10 flex items-center justify-end gap-2">
+      <p className="my-10 text-muted-foreground">{post.content}</p>
+      <div>
+        <PostMedia content={post.content} media={post.media} />
+      </div>
+      <div className="my-10 flex items-center justify-start gap-2">
         <Button variant="ghost" size="icon">
           <HeartIcon className="h-6 w-6" />
         </Button>
