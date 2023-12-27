@@ -19,7 +19,23 @@ const characterLimit = 200;
 
 export default function CreatePostForm() {
   const [state, formAction] = useFormState(createPost, initialState);
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [characters, setCharacters] = useState(0);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setFile(file);
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+    } else {
+      setPreviewUrl(null);
+    }
+  };
 
   return (
     <form action={formAction} className="space-y-3">
@@ -49,13 +65,17 @@ export default function CreatePostForm() {
             placeholder="Write down your thoughts..."
             aria-describedby="content-error"
           />
+
           <Button
             type="button"
             variant="ghost"
             size="icon"
             className="absolute bottom-2 left-2"
           >
-            <Label htmlFor="media">
+            <Label
+              htmlFor="media"
+              className="flex h-full cursor-pointer items-center"
+            >
               <PaperclipIcon />
             </Label>
           </Button>
@@ -64,7 +84,7 @@ export default function CreatePostForm() {
             type="file"
             className="hidden"
             name="media"
-            aria-describedby="media-error"
+            onChange={handleFileChange}
           />
           <p
             className={cn(
@@ -79,6 +99,16 @@ export default function CreatePostForm() {
         </div>
         <FormErrors id="content-error" errors={state.errors?.content} />
       </div>
+
+      {previewUrl && file && (
+        <div>
+          {file.type.startsWith("image/") ? (
+            <img src={previewUrl} alt="preview" />
+          ) : file.type.startsWith("video/") ? (
+            <video src={previewUrl} controls></video>
+          ) : null}
+        </div>
+      )}
       <div className="w-full">
         <FormSubmitButton value="Create Post" loadingValue="Creating..." />
       </div>

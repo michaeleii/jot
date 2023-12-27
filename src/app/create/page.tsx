@@ -9,7 +9,7 @@ export default async function CreatePage() {
     redirect("/api/auth/signin?callbackUrl=/create");
   }
   return (
-    <MaxWidthWrapper className="mt-20 max-w-lg">
+    <MaxWidthWrapper className="my-10 max-w-lg">
       <CreatePostForm />
     </MaxWidthWrapper>
   );
