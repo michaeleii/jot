@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import FormErrors from "@/components/form-errors";
 import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
+import { PaperclipIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const initialState: State = { message: null, errors: {} };
 const characterLimit = 200;
@@ -38,13 +41,30 @@ export default function CreatePostForm() {
       <div>
         <div className="relative">
           <Textarea
-            className={cn("min-h-[200px]", {
+            className={cn("min-h-[200px] pb-10", {
               "border-destructive": state.errors?.content,
             })}
             name="content"
             onInput={(e) => setCharacters(e.currentTarget.value.length)}
             placeholder="Write down your thoughts..."
             aria-describedby="content-error"
+          />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="absolute bottom-2 left-2"
+          >
+            <Label htmlFor="media">
+              <PaperclipIcon />
+            </Label>
+          </Button>
+          <Input
+            id="media"
+            type="file"
+            className="hidden"
+            name="media"
+            aria-describedby="media-error"
           />
           <p
             className={cn(
