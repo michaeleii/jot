@@ -2,6 +2,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 import { users } from "./users";
 import { createInsertSchema } from "drizzle-zod";
+import { media } from "./media";
 
 export const posts = sqliteTable("posts", {
   id: integer("id").notNull().primaryKey(),
@@ -10,6 +11,7 @@ export const posts = sqliteTable("posts", {
     .references(() => users.id),
   title: text("title").notNull(),
   content: text("text").notNull(),
+  mediaId: integer("media_id").references(() => media.id),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
