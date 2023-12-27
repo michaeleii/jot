@@ -78,6 +78,9 @@ export default function CreatePostForm() {
       await createPostAction(formData);
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        state.message = error.message;
+      }
     } finally {
       setIsLoading(false);
     }
