@@ -8,6 +8,7 @@ export default function FormSubmitButton({
   value,
   loadingValue,
   variant = "default",
+  isLoading,
 }: {
   value: React.ReactNode;
   loadingValue: React.ReactNode;
@@ -20,18 +21,20 @@ export default function FormSubmitButton({
     | "link"
     | null
     | undefined;
+  isLoading?: boolean;
 }) {
   const { pending } = useFormStatus();
+  const isPending = pending || isLoading;
   return (
     <Button
       size="lg"
       variant={variant}
       type="submit"
       className="w-full"
-      disabled={pending}
-      aria-disabled={pending}
+      disabled={isPending}
+      aria-disabled={isPending}
     >
-      {pending ? (
+      {isPending ? (
         <div className="flex items-center gap-2">
           <Loader2Icon className="animate-spin" />
           <span>{loadingValue}</span>
