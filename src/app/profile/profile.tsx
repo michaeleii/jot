@@ -10,7 +10,7 @@ export async function Profile() {
       </div>
       <Image
         className="rounded-full"
-        src={user.image || "ttps://www.gravatar.com/avatar/?d=mp"}
+        src={user.image || "https://www.gravatar.com/avatar/?d=mp"}
         alt={user.name || ""}
         width={100}
         height={100}
