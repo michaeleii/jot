@@ -4,8 +4,8 @@ import Link from "next/link";
 import DeletePostDialog from "./delete-post-dialog";
 
 import { Post, singlePostQuery } from "@/db/queries/posts";
-// import { HeartIcon, Share2Icon } from "lucide-react";
-// import { Button } from "@/components/ui/button";
+import { HeartIcon, Share2Icon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 
 type PostMediaProps = {
@@ -54,12 +54,12 @@ export default async function SinglePostItem({ postId }: SinglePostItemProps) {
         <PostMedia content={post.content} media={post.media} />
       </div>
       <div className="my-10 flex items-center justify-start gap-2">
-        {/* <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon">
           <HeartIcon className="h-6 w-6" />
         </Button>
         <Button variant="ghost" size="icon">
           <Share2Icon className="h-6 w-6" />
-        </Button> */}
+        </Button>
         {isOwner && <DeletePostDialog postId={postId} />}
       </div>
     </article>
