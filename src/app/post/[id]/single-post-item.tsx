@@ -6,7 +6,7 @@ import DeletePostDialog from "./delete-post-dialog";
 import { Post, singlePostQuery } from "@/db/queries/posts";
 // import { HeartIcon, Share2Icon } from "lucide-react";
 // import { Button } from "@/components/ui/button";
-import { getCurrentUser } from "@/lib/auth";
+import { auth } from "@/auth";
 
 type PostMediaProps = {
   content: Post["content"];
@@ -41,8 +41,8 @@ type SinglePostItemProps = {
 
 export default async function SinglePostItem({ postId }: SinglePostItemProps) {
   const post = await singlePostQuery.all({ postId }).then((posts) => posts[0]);
-  const user = await getCurrentUser();
-  const isOwner = post.user.id === user.id;
+  const session = await auth();
+  const isOwner = session && post.user.id === session.user.id;
   return (
     <article className="px-5">
       <h1 className="main-heading mt-5">{post.title}</h1>

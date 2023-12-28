@@ -11,7 +11,7 @@ export const getCurrentUser = async (callbackUrl?: string) => {
   const session = await auth();
 
   if (!session?.user) {
-    redirect(`/api/auth/signin${callbackUrl || `?callbackUrl=${callbackUrl}`}`);
+    redirect(`/api/auth/signin${callbackUrl && `?callbackUrl=${callbackUrl}`}`);
   }
 
   return session.user;
