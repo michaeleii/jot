@@ -3,6 +3,8 @@ import { CircleIcon } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
 
+import Image from "next/image";
+
 type PostItemProps = { post: Post };
 
 export default function PostItem({ post }: PostItemProps) {
@@ -21,6 +23,21 @@ export default function PostItem({ post }: PostItemProps) {
             <p className="text-sm text-muted-foreground">{post.content}</p>
           </article>
         </Link>
+        <p className="my-5 flex items-center justify-end gap-3 pr-3 text-xs tracking-widest text-muted-foreground">
+          <Link href={`/user/${post.user.id}`}>
+            <Image
+              className="rounded-full"
+              src={post.user.image || "https://www.gravatar.com/avatar/?d=mp"}
+              alt={post.user.name || ""}
+              width={20}
+              height={20}
+              quality={100}
+            />
+          </Link>
+          <Link href={`/user/${post.user.id}`}>
+            <span>{post.user.name}</span>
+          </Link>
+        </p>
       </div>
     </>
   );
