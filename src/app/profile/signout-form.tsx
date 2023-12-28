@@ -1,21 +1,19 @@
-import { signOut } from "@/auth";
-
 import FormSubmitButton from "@/components/form-submit-button";
+import { logout } from "./actions";
+import { LogOutIcon } from "lucide-react";
 
-async function logout() {
-  "use server";
-  await signOut({
-    redirectTo: "/",
-  });
-}
-
-export default async function SignOutForm() {
+export default function SignOutForm() {
   return (
-    <form action={logout} className="mt-3 w-full">
+    <form action={logout} className="w-full">
       <FormSubmitButton
-        variant="secondary"
-        value="Sign Out"
-        loadingValue="Signing Out..."
+        variant="ghost"
+        value={
+          <div className="flex items-center justify-start pr-6">
+            <LogOutIcon className="mr-2 h-4 w-4" />
+            <span>Log out</span>
+          </div>
+        }
+        loadingValue="Please wait..."
       />
     </form>
   );
