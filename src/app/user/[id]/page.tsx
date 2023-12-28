@@ -1,10 +1,11 @@
 import Image from "next/image";
 
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import PostList from "@/components/post-list";
+import PostList, { PostListSkeleton } from "@/components/post-list";
 
 import { userFeedQuery } from "@/db/queries/posts";
 import { userProfileQuery } from "@/db/queries/users";
+import { Suspense } from "react";
 
 type UserProfilePageProps = {
   params: {
@@ -17,7 +18,9 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
   return (
     <MaxWidthWrapper>
       <UserProfile id={userId} />
-      <UserPostsList id={userId} />
+      <Suspense fallback={<PostListSkeleton />}>
+        <UserPostsList id={userId} />
+      </Suspense>
     </MaxWidthWrapper>
   );
 }
