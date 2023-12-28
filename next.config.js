@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "jot-local-michael.s3.us-west-2.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "jot-prod-michael.s3.us-west-2.amazonaws.com",
+      },
     ],
   },
 };
