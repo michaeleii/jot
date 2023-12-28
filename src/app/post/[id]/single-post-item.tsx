@@ -44,24 +44,38 @@ export default async function SinglePostItem({ postId }: SinglePostItemProps) {
   const session = await auth();
   const isOwner = session && post.user.id === session.user.id;
   return (
-    <article className="px-5">
-      <h1 className="main-heading mt-5">{post.title}</h1>
-      <span className="mb-5 text-sm text-muted-foreground">
-        By {post.user.name}
-      </span>
-      <p className="my-10 text-muted-foreground">{post.content}</p>
-      <div>
-        <PostMedia content={post.content} media={post.media} />
-      </div>
-      <div className="my-10 flex items-center justify-start gap-2">
-        <Button variant="ghost" size="icon">
-          <HeartIcon className="h-6 w-6" />
-        </Button>
-        <Button variant="ghost" size="icon">
-          <Share2Icon className="h-6 w-6" />
-        </Button>
-        {isOwner && <DeletePostDialog postId={postId} />}
-      </div>
-    </article>
+    <>
+      <p className="flex items-center justify-start gap-3 pl-2 text-sm tracking-widest text-muted-foreground">
+        <Link href={`/user/${post.user.id}`}>
+          <Image
+            className="rounded-full"
+            src={post.user.image || "https://www.gravatar.com/avatar/?d=mp"}
+            alt={post.user.name || ""}
+            width={20}
+            height={20}
+            quality={100}
+          />
+        </Link>
+        <Link href={`/user/${post.user.id}`}>
+          <span>{post.user.name}</span>
+        </Link>
+      </p>
+      <article className="mb-10 mt-5 rounded-md border px-10">
+        <h1 className="main-heading mt-10">{post.title}</h1>
+        <p className="my-10 text-muted-foreground">{post.content}</p>
+        <div>
+          <PostMedia content={post.content} media={post.media} />
+        </div>
+        <div className="my-10 flex items-center justify-start gap-2">
+          <Button variant="ghost" size="icon">
+            <HeartIcon className="h-6 w-6" />
+          </Button>
+          <Button variant="ghost" size="icon">
+            <Share2Icon className="h-6 w-6" />
+          </Button>
+          {isOwner && <DeletePostDialog postId={postId} />}
+        </div>
+      </article>
+    </>
   );
 }
