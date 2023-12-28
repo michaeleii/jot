@@ -26,7 +26,7 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
   );
 }
 
-export async function UserProfile({ id }: { id: string }) {
+async function UserProfile({ id }: { id: string }) {
   const user = await userProfileQuery
     .all({ userId: id })
     .then((users) => users[0]);
