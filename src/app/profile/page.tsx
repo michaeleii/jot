@@ -2,7 +2,8 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Profile } from "./profile";
 import { userFeedQuery } from "@/db/queries/posts";
 import { getCurrentUser } from "@/lib/auth";
-import PostList from "@/components/post-list";
+import PostList, { PostListSkeleton } from "@/components/post-list";
+import { Suspense } from "react";
 
 async function ProfilePostsList() {
   const user = await getCurrentUser();
@@ -14,7 +15,9 @@ export default function ProfilePage() {
   return (
     <MaxWidthWrapper>
       <Profile />
-      <ProfilePostsList />
+      <Suspense fallback={<PostListSkeleton />}>
+        <ProfilePostsList />
+      </Suspense>
     </MaxWidthWrapper>
   );
 }

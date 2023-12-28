@@ -1,5 +1,8 @@
+import { Suspense } from "react";
+
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import PostList from "@/components/post-list";
+import PostList, { PostListSkeleton } from "@/components/post-list";
+
 import { homeFeedQuery } from "@/db/queries/posts";
 
 async function HomePostList() {
@@ -10,7 +13,9 @@ async function HomePostList() {
 export default async function Home() {
   return (
     <MaxWidthWrapper>
-      <HomePostList />
+      <Suspense fallback={<PostListSkeleton />}>
+        <HomePostList />
+      </Suspense>
     </MaxWidthWrapper>
   );
 }

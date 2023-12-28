@@ -1,6 +1,7 @@
 import { Post } from "@/db/queries/posts";
 import { CircleIcon } from "lucide-react";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 type PostItemProps = { post: Post };
 
@@ -20,6 +21,23 @@ export default function PostItem({ post }: PostItemProps) {
             <p className="text-sm text-muted-foreground">{post.content}</p>
           </article>
         </Link>
+      </div>
+    </>
+  );
+}
+
+export function PostItemSkeleton() {
+  return (
+    <>
+      <div className="absolute -left-2.5">
+        <CircleIcon className="h-4 w-4 fill-background stroke-muted-foreground" />
+      </div>
+      <div>
+        <Skeleton className="mb-5 h-3 w-[100px]" />
+        <article className="card">
+          <Skeleton className="mb-2 h-5  w-[200px]" />
+          <Skeleton className="h-5" />
+        </article>
       </div>
     </>
   );
