@@ -26,7 +26,7 @@ function ProfileDropdownMenu() {
       <DropdownMenuContent className="w-32">
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Link href="/profile" className="flex items-center">
+            <Link href="/profile" className="flex w-full items-center">
               <User2Icon className="mr-2 h-4 w-4" />
               <span>Profile</span>
             </Link>
