@@ -4,21 +4,10 @@ import Link from "next/link";
 import DeletePostDialog from "./delete-post-dialog";
 
 import { Post, singlePostQuery } from "@/db/queries/posts";
-import { Copy, HeartIcon, Share2Icon } from "lucide-react";
+import { HeartIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import ShareDialog from "./share-dialog";
 
 type PostMediaProps = {
@@ -83,7 +72,7 @@ export default async function SinglePostItem({ postId }: SinglePostItemProps) {
           <Button variant="ghost" size="icon">
             <HeartIcon className="h-6 w-6" />
           </Button>
-          <ShareDialog />
+          <ShareDialog baseURL={process.env.SITE_URL} />
           {isOwner && <DeletePostDialog postId={postId} />}
         </div>
       </article>

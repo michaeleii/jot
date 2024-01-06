@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -14,10 +13,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Share2Icon, Copy, Check } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 
-export default function ShareDialog() {
-  const shareUrl = window.location.href;
+export default function ShareDialog({ baseURL = "http://localhost:3000" }) {
+  const shareUrl = baseURL + usePathname();
   const handleCopy = () => {
     navigator.clipboard.writeText(shareUrl);
     toast("Link copied to clipboard", {
